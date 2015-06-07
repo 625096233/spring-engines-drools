@@ -25,9 +25,9 @@ public class MessagesTest {
 
 	@Test
 	public void test() {
-		try {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("drools/spring-drools.xml");
-        StatefulKnowledgeSession ksession = (StatefulKnowledgeSession) context.getBean( "kbase1" );
+		KnowledgeBase knowledgeBase= (KnowledgeBase) context.getBean( "kbase1" );
+		StatefulKnowledgeSession ksession =knowledgeBase.newStatefulKnowledgeSession();
 
 			KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory
 					.newFileLogger(ksession, "test");
@@ -39,9 +39,6 @@ public class MessagesTest {
 			ksession.fireAllRules();
 			ksession.dispose();  
 			logger.close();
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
 	}
 
 	public static class Message {

@@ -6,9 +6,9 @@ import com.supermy.rule.junit.MessagesTest.Message;
 
 rule "Hello World"
     when
-        m : Message( status == Message.HELLO, myMessage : message )
+        m : Message( status == Message.HELLO,myMessage : message )
     then
-        System.out.println( myMessage );
+        System.out.println(myMessage);
         m.setMessage( "Goodbye cruel world" );
         m.setStatus( com.supermy.rule.junit.MessagesTest.Message.GOODBYE );
         update( m );
@@ -18,5 +18,5 @@ rule "GoodBye"
     when
         Message( status == Message.GOODBYE, myMessage : message )
     then
-        System.out.println( myMessage );
+        System.out.println(myMessage);
 end
